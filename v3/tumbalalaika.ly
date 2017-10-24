@@ -1,9 +1,9 @@
 \version "2.18.2"  % necessary for upgrading to future LilyPond versions.
 
 \header {
-	title = "Tumbalalaika"
-	composer = "Traditional"
-	arranger = "arr. Andy Rosenbaum July 2017"
+	title = "Tumbalalaika v3"
+	composer = "Unknown (Russian/Yiddish folk song)"
+	arranger = "arr. Andy Rosenbaum October 2017"
 }
 
 
@@ -15,13 +15,38 @@
 }
 
 global = {
-  \key a \minor
+  \key d \minor
   \time 6/8
 }
 
 % ================= %
 % chorus first part %
 % ================= %
+
+% new!!! %
+% ====== %
+
+mainChorusSop = \relative d' {
+%        | a'8 a a a a a | a g8. f16 e4 e8 | g8 g g g g g | g f8. e16 d4 d8 |
+        | a'8 a a a a a | a g8. f16 e4 e8 | g8 g g g g g | g f8. e16 f4 f8 |
+}
+
+mainChorusAlto = \relative d' {
+%        | d8 d d d d d | d d8. d16 cis4 cis8 | cis8 cis cis cis cis cis | cis cis8. cis16 a4 a8 |
+        | d8 d d d d d | d d8. d16 cis4 cis8 | cis8 cis cis cis cis cis | cis cis8. cis16 d4 d8 |
+}
+
+mainChorusTenor = \relative d {
+%        | f8 f f f f f | f f8. f16 g4 g8 | g8 g g bes bes bes | bes a8. g16 f4 f8 |
+        | f8 f f f f f | f f8. f16 g4 g8 | g8 g g bes bes bes | bes bes8.bes16 a4 a8 |
+}
+
+mainChorusBass = \relative d {
+        | d4. a | d e | e a, | a8 b8. cis16 d4. |
+}
+
+% old!!! %
+% ====== %
 
 mainChorusOne = \relative c' {
 	| e8 e e e e e | e d8. c16 b4 b8 | d8 d d d d d | d c8. b16 a4 a8 |
@@ -103,6 +128,8 @@ restNotes = { | r4. r | r r | }
 
 basicTum = \lyricmode { | tum -- ba -- la tum -- ba -- la | tum -- ba -- la -- lai -- ka | tum -- ba -- la tum -- ba -- la | tum -- ba -- la -- lai -- ka | }
 
+shpielWords = \lyricmode { | tum -- ba -- la -- lai -- ka | shpiel ba -- la -- lai -- ka | tum -- ba -- la -- lai -- ka | frey -- lach zol zayn | }
+
 emptyWords = \lyricmode {}
 
 % papa = \lyricmode { | pa pa pa pa | }
@@ -110,6 +137,35 @@ emptyWords = \lyricmode {}
 % ================== %
 % chrous second part %
 % ================== %
+
+% new!!! %
+% ====== %
+
+% argh! I know the 'bes' is not needed here, 'b' should work, but LilyPond is making 'b' a b natural,
+% even though there's clearly a b-flat in the key signature
+% I think I'm doing something wrong with the complex music expression
+% TODO: fix
+% for now, I'll just use 'bes' (and also the once instance of 'b' in the bass!) to unblock
+
+mainChorusTwoSop = \relative d' {
+        | d8 f a d4 d8 | f8 e d c4 c8 | c8 bes g g4 g8 | bes8 a g f4. |
+}
+
+mainChorusTwoAlto = \relative d' {
+        | d8 f a d4 d8 | d8 c bes a4 a8 | c8 bes g e4 e8 | g8 f e d4. |
+}
+
+mainChorusTwoTenor = \relative d {
+        | f8 a d f4 f8 | f8 f f f4 f8 | c8 c c cis4 cis8 | cis8 cis cis a4. |
+}
+
+mainChorusTwoBass = \relative d {
+        | d4. c | bes f' | e g | a,8 b8 cis d4. |
+}
+
+% old!!! %
+% ====== %
+
 
 mainChorusTwo = \relative c' {
 	| a8 c e a4 a8 | c8 b a e4 e8 | g8 f d b4 b8 | d8 c b a4 a8 |
@@ -148,20 +204,30 @@ bassMusic = \baseChorusOneA
 
 % OPEN
 
-sopMusic = \transpose c c' { \offBeatChorusOneB }
-sopWords = \offBeatBa
+% sopMusic = \transpose c c' { \offBeatChorusOneB }
+% sopMusic = { \mainChorusSop \mainChorus2Sop }
+% sopWords = \basicTum \shpielWords
 
-altoMusic = \mainChorusOne
-altoWords = \basicTum
+sopMusic = { \mainChorusSop \mainChorusTwoSop }
+sopWords = { \basicTum \shpielWords }
 
-tenorMusic = \transpose c c, { \offBeatChorusOneA }
-tenorWords = \offBeatBa
+altoMusic = { \mainChorusAlto \mainChorusTwoAlto }
+altoWords = { \basicTum \shpielWords }
 
-bassMusic = \baseChorusOneA
+tenorMusic = { \mainChorusTenor \mainChorusTwoTenor }
+tenorWords = { \basicTum \shpielWords }
 
-bassWords = \lyricmode {
-  doom doom | doom doom | doom doom | doom doom
+bassMusic = { \mainChorusBass \mainChorusTwoBass }
+
+bassTum = \lyricmode {
+  tum tum | tum tum | tum tum | tum ba la la
 }
+
+bassTwoTum = \lyricmode {
+  tum lai | shpiel lai | tum lai | frey -- lach zol zyn |
+}
+
+bassWords = { \bassTum \bassTwoTum }
 
 
 \score {
@@ -173,11 +239,11 @@ bassWords = \lyricmode {
     \new Staff = "women" <<
       \new Voice = "sopranos" {
         \voiceOne
-        << \global \sopMusic >>
+        << \global { \sopMusic } >>
       }
       \new Voice = "altos" {
         \voiceTwo
-        << \global \altoMusic >>
+        << \global { \altoMusic } >>
       }
     >>
     \new Lyrics = "altos"
@@ -189,10 +255,10 @@ bassWords = \lyricmode {
       \clef bass
       \new Voice = "tenors" {
         \voiceOne
-        << \global \tenorMusic >>
+        << \global { \tenorMusic } >>
       }
       \new Voice = "basses" {
-        \voiceTwo << \global \bassMusic >>
+        \voiceTwo << \global { \bassMusic } >>
       }
     >>
     \new Lyrics = "basses"
