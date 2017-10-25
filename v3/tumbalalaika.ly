@@ -27,18 +27,18 @@ global = {
 % ====== %
 
 mainChorusSop = \relative d' {
-%        | a'8 a a a a a | a g8. f16 e4 e8 | g8 g g g g g | g f8. e16 d4 d8 |
-        | a'8 a a a a a | a g8. f16 e4 e8 | g8 g g g g g | g f8. e16 f4 f8 |
+        | a'8 a a a a a | a g8. f16 e4 e8 | g8 g g g g g | g f8. e16 d4 d8 |
+%        | a'8 a a a a a | a g8. f16 e4 e8 | g8 g g g g g | g f8. e16 f4 f8 |
 }
 
 mainChorusAlto = \relative d' {
-%        | d8 d d d d d | d d8. d16 cis4 cis8 | cis8 cis cis cis cis cis | cis cis8. cis16 a4 a8 |
-        | d8 d d d d d | d d8. d16 cis4 cis8 | cis8 cis cis cis cis cis | cis cis8. cis16 d4 d8 |
+        | d8 d d d d d | d d8. d16 cis4 cis8 | cis8 cis cis cis cis cis | cis cis8. cis16 a4 a8 |
+%        | d8 d d d d d | d d8. d16 cis4 cis8 | cis8 cis cis cis cis cis | cis cis8. cis16 d4 d8 |
 }
 
 mainChorusTenor = \relative d {
-%        | f8 f f f f f | f f8. f16 g4 g8 | g8 g g bes bes bes | bes a8. g16 f4 f8 |
-        | f8 f f f f f | f f8. f16 g4 g8 | g8 g g bes bes bes | bes bes8.bes16 a4 a8 |
+        | f8 f f f f f | f f8. f16 g4 g8 | g8 g g bes bes bes | bes a8. g16 f4 f8 |
+%        | f8 f f f f f | f f8. f16 g4 g8 | g8 g g bes bes bes | bes bes8. bes16 a4 a8 |
 }
 
 mainChorusBass = \relative d {
