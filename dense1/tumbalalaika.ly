@@ -1,8 +1,8 @@
 \version "2.18.2"  % necessary for upgrading to future LilyPond versions.
 
 \header {
-	title = "Tumbalalaika v3"
-	composer = "Unknown (Russian/Yiddish folk song)"
+	title = "Tumbalalaika dense v3"
+	composer = "Jewish / Yiddish / Russian folk song"
 	arranger = "arr. Andy Rosenbaum October 2017"
 }
 

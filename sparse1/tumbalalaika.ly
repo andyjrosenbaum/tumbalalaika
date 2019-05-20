@@ -1,7 +1,7 @@
 \version "2.18.2"  % necessary for upgrading to future LilyPond versions.
 
 \header {
-	title = "Tumbalalaika"
+	title = "Tumbalalaika sparse v3"
 	composer = "Jewish / Yiddish / Russian Folk Song"
 	arranger = "arr. Andy Rosenbaum May 2019"
 }
@@ -118,7 +118,7 @@ emptyWords = \lyricmode {}
 
 % Alto
 mainChorusTwo = \relative c' {
-	| a8 c e a4 a8 | c8 b a e4 e8 | g8 f d b4 b8 | d8 c8. b16 a4. |
+	| a8 c e a4 a8 | c8 b a e4 e8 | g8 f d b4 b8 | d8 c8 b a4. |
 }
 
 aboveChorusTwoA = \relative c' {
@@ -138,20 +138,22 @@ aboveChorusTwoD = \relative c' {
 }
 
 sopranoChorusTwoA = \relative c' {
-	| c8 a c e4 e8 | e8 d c c4 c8 | b8 g a b4 b8 | b8 c8. d16 c4. |
+	| c8 a c e4 e8 | e8 d c c4 c8 | b8 g a b4 b8 | b8 c d c4. |
 }
 
 tenorChorusTwoA = \relative c' {
-	| r8 a a r8 c4 | r8 c c r g4 | r8 b b r8 gis4 | gis8 a8. gis16 e4. |
+	| r8 a a r8 c4 | r8 c c r g4 | r8 b b r8 gis4 | gis8 a gis e4. |
 }
 
-tenorChorusTwoAWords = \lyricmode { | ba ba ba | ba ba ba | ba ba ba | tum -- ba -- la -- la | }
+tenorChorusTwoAWords = \lyricmode { | ba ba ba | ba ba ba | ba ba ba | frey -- lach -- zol -- zayn | }
 
 baseChorusTwoA = \relative c {
-	| a4. a | f c' | g e | e8 fis8. gis16 a4. |
+	| a4. a | f c' | g e | e8 fis gis a4. |
 }
 
-spiel = \lyricmode { | tum -- ba -- la -- lai -- ka | spiel -- ba -- la -- lai -- ka | tum -- ba -- la -- lai -- ka | tum -- ba -- la -- la | }
+spiel = \lyricmode { | tum -- ba -- la -- lai -- ka | spiel -- ba -- la -- lai -- ka | tum -- ba -- la -- lai -- ka | frey -- lach -- zol -- zayn | }
+
+bassDoomTwo = \lyricmode { | doom doom | doom doom | doom doom | frey -- lach -- zol -- zayn | }
 
 % DENSE
 
@@ -182,7 +184,7 @@ tenorWords = { \offBeatBa \tenorChorusTwoAWords }
 
 bassMusic = { \baseChorusOneA \baseChorusTwoA }
 
-bassWords = { \bassDoom \bassDoom }
+bassWords = { \bassDoom \bassDoomTwo }
 
 
 \score {
