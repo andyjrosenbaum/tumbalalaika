@@ -74,19 +74,22 @@ belowChorusOneD = \relative c' {
 baseChorusOneA = \relative c {
 %   | a4. | a4. | b4. | e,4. | b'4. | e,4. | b'4 e,8 | a4. |
 %     | a4. | a4. | b4. | e,4. | b'4. | e,4. | e8 fis gis | a4. |
-    | a4. a | b e, | b' e, | e a |
+    | a4. a | b e, | b' e, | e8 fis gis a4. |
 }
 
 % offbeat options
 
+% Soprano
 offBeatChorusOneA = \relative c' {
 % 	| r8 c c r8 c c | r8 c r r8 b b | r8 b b r8 b b | r8 b r r8 c c |
-	| r8 c c r8 c c | r8 d4 r8 b b | r8 b b r8 b b | r8 d4 r8 c c |
+	| r8 c c r8 c c | r8 b4 r8 gis gis | r8 gis gis r8 b b | r8 d4 r8 c c |
 }
 
+% Tenor
 offBeatChorusOneB = \relative c' {
 % 	| r8 a a r8 a a | r8 a r r8 gis gis | r8 gis gis r8 gis gis | r8 gis r r8 a a |
-	| r8 a a r8 a a | r8 a4 r8 gis gis | r8 gis gis r8 gis gis | r8 gis4 r8 a a |
+	| r8 a a r8 a a | r8 gis4 r8 b b | r8 b b r8 gis gis | r8 gis4 r8 e e |
+%	| r8 a a r8 g g | r8 f4 r8 e e | r8 gis gis r8 gis gis | r8 gis4 r8 e e |
 }
 
 offBeatChorusOneC = \relative c' {
@@ -148,19 +151,20 @@ bassMusic = \baseChorusOneA
 
 % OPEN
 
-sopMusic = \transpose c c' { \offBeatChorusOneB }
+sopMusic = \transpose c c' { \offBeatChorusOneA }
 sopWords = \offBeatBa
 
 altoMusic = \mainChorusOne
 altoWords = \basicTum
 
-tenorMusic = \transpose c c, { \offBeatChorusOneA }
+% tenorMusic = \transpose c c, { \offBeatChorusOneB }
+tenorMusic = \offBeatChorusOneB
 tenorWords = \offBeatBa
 
 bassMusic = \baseChorusOneA
 
 bassWords = \lyricmode {
-  doom doom | doom doom | doom doom | doom doom
+  | doom doom | doom doom | doom doom | doom doom doom doom |
 }
 
 
@@ -202,5 +206,5 @@ bassWords = \lyricmode {
     \context Lyrics = "basses" \lyricsto "basses" \bassWords
   >>
 \layout{}
-\midi{ \tempo 4 = 90 }
+\midi{ \tempo 4 = 80 }
 }
