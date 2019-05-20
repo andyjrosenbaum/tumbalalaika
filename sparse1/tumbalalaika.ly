@@ -2,8 +2,8 @@
 
 \header {
 	title = "Tumbalalaika"
-	composer = "Traditional"
-	arranger = "arr. Andy Rosenbaum July 2017"
+	composer = "Jewish / Yiddish / Russian Folk Song"
+	arranger = "arr. Andy Rosenbaum May 2019"
 }
 
 
@@ -106,6 +106,8 @@ restNotes = { | r4. r | r r | }
 
 basicTum = \lyricmode { | tum -- ba -- la tum -- ba -- la | tum -- ba -- la -- lai -- ka | tum -- ba -- la tum -- ba -- la | tum -- ba -- la -- lai -- ka | }
 
+bassDoom = \lyricmode { | doom doom | doom doom | doom doom | tum -- ba -- la -- la | }
+
 emptyWords = \lyricmode {}
 
 % papa = \lyricmode { | pa pa pa pa | }
@@ -114,8 +116,9 @@ emptyWords = \lyricmode {}
 % chrous second part %
 % ================== %
 
+% Alto
 mainChorusTwo = \relative c' {
-	| a8 c e a4 a8 | c8 b a e4 e8 | g8 f d b4 b8 | d8 c b a4 a8 |
+	| a8 c e a4 a8 | c8 b a e4 e8 | g8 f d b4 b8 | d8 c8. b16 a4. |
 }
 
 aboveChorusTwoA = \relative c' {
@@ -134,6 +137,22 @@ aboveChorusTwoD = \relative c' {
 	| c8 e a c4 c8 | e8 d c b4 b8 | b8 a g f4 f8 | e8 e e e4 e8 |
 }
 
+sopranoChorusTwoA = \relative c' {
+	| c8 a c e4 e8 | e8 d c c4 c8 | b8 g a b4 b8 | b8 c8. d16 c4. |
+}
+
+tenorChorusTwoA = \relative c' {
+	| r8 a a r8 c4 | r8 c c r g4 | r8 b b r8 gis4 | gis8 a8. gis16 e4. |
+}
+
+tenorChorusTwoAWords = \lyricmode { | ba ba ba | ba ba ba | ba ba ba | tum -- ba -- la -- la | }
+
+baseChorusTwoA = \relative c {
+	| a4. a | f c' | g e | e8 fis8. gis16 a4. |
+}
+
+spiel = \lyricmode { | tum -- ba -- la -- lai -- ka | spiel -- ba -- la -- lai -- ka | tum -- ba -- la -- lai -- ka | tum -- ba -- la -- la | }
+
 % DENSE
 
 %{ DENSE
@@ -151,21 +170,19 @@ bassMusic = \baseChorusOneA
 
 % OPEN
 
-sopMusic = \transpose c c' { \offBeatChorusOneA }
-sopWords = \offBeatBa
+sopMusic = \transpose c c' { \offBeatChorusOneA \sopranoChorusTwoA }
+sopWords = { \offBeatBa \spiel }
 
-altoMusic = \mainChorusOne
-altoWords = \basicTum
+altoMusic = { \mainChorusOne \mainChorusTwo }
+altoWords = { \basicTum \spiel }
 
 % tenorMusic = \transpose c c, { \offBeatChorusOneB }
-tenorMusic = \offBeatChorusOneB
-tenorWords = \offBeatBa
+tenorMusic = { \offBeatChorusOneB \tenorChorusTwoA }
+tenorWords = { \offBeatBa \tenorChorusTwoAWords }
 
-bassMusic = \baseChorusOneA
+bassMusic = { \baseChorusOneA \baseChorusTwoA }
 
-bassWords = \lyricmode {
-  | doom doom | doom doom | doom doom | doom doom doom doom |
-}
+bassWords = { \bassDoom \bassDoom }
 
 
 \score {
@@ -206,5 +223,5 @@ bassWords = \lyricmode {
     \context Lyrics = "basses" \lyricsto "basses" \bassWords
   >>
 \layout{}
-\midi{ \tempo 4 = 80 }
+\midi{ \tempo 4 = 90 }
 }
